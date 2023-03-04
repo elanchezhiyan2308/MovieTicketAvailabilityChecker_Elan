@@ -24,6 +24,9 @@
   padding: 10px 0px 6px 0px;
   text-align: center;
 }
+.seatSelected{
+background-color: red!important;
+}
         </style>
         
 </head>
@@ -44,7 +47,7 @@
             <th>Tags</th>  
             <th></th>     
         </tr>
-        <tr *ngFor="let movie of letMovie; index as i"> 
+        <tr *ngFor="let movie of letMovie"> 
             <td><img src="{{movie.thumbnail_url}}" alt="Forest" style="width:50px"></td>
             <td>{{movie.movie_name}}</td>
             <td>{{movie.release_date}}</td>
@@ -71,6 +74,7 @@
             <th>Show 3</th>
             <th>Show 4</th> 
             <th></th>   
+            <!-- <th></th>    -->
         </tr>
          <tr *ngFor="let theatre of letTheatre">
             <td><img src="{{theatre.thumbnail_url}}" style="width:50px"></td> 
@@ -82,6 +86,7 @@
             <td><b>{{theatre.show3_movie}}</b> <br/><button (click)="divTheatreSeatFunction(theatre.show3_time+'--'+theatre.show3_movie+'--'+theatre.theatre_name)" class="btn btn-info btn-sm">{{theatre.show3_time}}</button></td> 
             <td><b>{{theatre.show4_movie}}</b> <br/><button (click)="divTheatreSeatFunction(theatre.show4_time+'--'+theatre.show4_movie+'--'+theatre.theatre_name)" class="btn btn-info btn-sm">{{theatre.show4_time}}</button></td>
             <td><a href="{{theatre.website}}">website</a></td>
+            <!-- //<td>{{typeof theatre.booked_seats != "undefined" && theatre.booked_seats != null && theatre.booked_seats.length != null && theatre.booked_seats.length > 0 ||  ? null : +'--'+ theatre.booked_seats[0].show1_booked_seats }}</td> -->
       </tr>
     </table>
     <button *ngIf="btnTheatre" class="btn btn-secondary" (click)="divBackMovieFunction()">Back to Movie Details</button>
@@ -90,10 +95,11 @@
 <div *ngIf="divTheatreSeat">
 <h2>Theatre Seat Inforamtion</h2>
     <div class="col-lg-12" >
-        <div class="seat col-lg-1" *ngFor="let number of letTheatreSeat">
+        <div id="{{i+1}}" class="seat col-lg-1" (click)="getSelectSeat($event)" *ngFor="let number of letTheatreSeat; index as i">
             {{number}}
         </div>
     </div>
+    <!-- getWikiPage(number) -->
 </div>
 <button *ngIf="btnTheatreSeat" class="btn btn-secondary" (click)="divBackTheatreFunction()">back to Theatre Details</button>
 </div>

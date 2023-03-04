@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,ElementRef } from '@angular/core';
 import {theatreApiService} from "./services/theatreapi.service";
 import { Posts } from './classes/postparm';
 
@@ -10,17 +10,30 @@ import { Posts } from './classes/postparm';
 export class AppComponent  {
   constructor(private _theatreApiService: theatreApiService){
 }
-btnVal = "Button";
 letMovie: Array<any> = [];
 letTheatre: Array<any> = [];
 letTheatreSeat: Array<any> = [100]; 
+letSelectSeat:Array<any> = [];
 divMovie:boolean=true;
 divTheatre:boolean=false;
 btnTheatre:boolean = false;
 divTheatreSeat:boolean = false;
 btnTheatreSeat:boolean = false;
 
-   
+
+getSelectSeat(event: any)
+{
+  this.letSelectSeat.unshift(event.target.id);
+  if(event.target.className.indexOf('seatSelected') === -1)
+  {
+    event.target.classList.add('seatSelected');
+    //this.letSelectSeat.slice(event.target.id);
+  }
+  else{
+    event.target.classList.remove('seatSelected');
+  }
+  console.log(this.letSelectSeat);
+ }
       divTheatreSeatFunction(value: string){
         alert(value);
         this.divMovie=false;
@@ -59,10 +72,10 @@ btnTheatreSeat:boolean = false;
       (
         data =>
         {
-          this.letMovie =data.movies
-          this.letTheatre =data.theatre
+          this.letMovie =data.movies;
+          this.letTheatre =data.theatre;
+           console.log(data)
           this.letTheatreSeat = Array(100).fill(100, 0).map((v,i) => i+1);
-          
         }
       )
   }
