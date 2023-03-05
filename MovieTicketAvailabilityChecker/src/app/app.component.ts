@@ -2,6 +2,7 @@ import { Component,ElementRef } from '@angular/core';
 import {theatreApiService} from "./services/theatreapi.service";
 import { Posts, BooKSeats } from './classes/postparm';
 import { DatePipe } from '@angular/common';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-root',
