@@ -132,33 +132,41 @@ getSelectSeat(event: any)
             return (theatre.show1_movie == this.txtMovie_name || theatre.show2_movie == this.txtMovie_name || theatre.show3_movie == this.txtMovie_name || theatre.show4_movie == this.txtMovie_name) && theatre.theatre_name == this.txtTheatre_name && (theatre.show1_time == this.txtShow_time ||theatre.show2_time == this.txtShow_time || theatre.show3_time == this.txtShow_time||theatre.show4_time == this.txtShow_time ) ;
        });
        this.letSeatResult =[];
-       let number;
        for (let TheatreResut of letTheatreResut) {
         console.log(TheatreResut.booked_seats);
-        let txt = TheatreResut.booked_seats
-        console.log(this.txtShow_time);
+        //let txt = TheatreResut.booked_seats
+        //console.log(this.txtShow_time);
           if(TheatreResut.booked_seats !== undefined)
           {
-            number = TheatreResut.booked_seats.length -1;
-            
-            if(TheatreResut.booked_seats[number].date === this.txtCurrentDate)
+            for(let i=0; i < TheatreResut.booked_seats.length ; i++)
             {
-              if(TheatreResut.booked_seats[number].show1_time === this.txtShow_time )
+        
+            //number = TheatreResut.booked_seats.length === 0 ? TheatreResut.booked_seats.length : TheatreResut.booked_seats.length -1;
+            if(TheatreResut.booked_seats[i].date === this.txtCurrentDate)
+            {
+              console.log(TheatreResut.booked_seats[i].date) ;
+              if(TheatreResut.booked_seats[i].show1_time === this.txtShow_time )
               {
-                this.letSeatResult=TheatreResut.booked_seats[number].show1_booked_seats;
+                this.letSeatResult=TheatreResut.booked_seats[i].show1_booked_seats;
                 //this.letSelectSeat = TheatreResut.booked_seats[0].show1_booked_seats.toString();
               }
-              if(TheatreResut.booked_seats[number].show2_time === this.txtShow_time )
+              if(TheatreResut.booked_seats[i].show2_time === this.txtShow_time )
               {
-                this.letSeatResult= TheatreResut.booked_seats[number].show2_booked_seats;
+                this.letSeatResult= TheatreResut.booked_seats[i].show2_booked_seats;
                 //this.letSelectSeat =TheatreResut.booked_seats[0].show2_booked_seats.toString();
               }
-              if(TheatreResut.booked_seats[number].show3_time === this.txtShow_time )
+              if(TheatreResut.booked_seats[i].show3_time === this.txtShow_time )
               {
-                this.letSeatResult=TheatreResut.booked_seats[number].show3_booked_seats;
+                this.letSeatResult=TheatreResut.booked_seats[i].show3_booked_seats;
+                //this.letSelectSeat =TheatreResut.booked_seats[0].show3_booked_seats;
+              }
+              if(TheatreResut.booked_seats[i].show4_time === this.txtShow_time )
+              {
+                this.letSeatResult=TheatreResut.booked_seats[i].show4_booked_seats;
                 //this.letSelectSeat =TheatreResut.booked_seats[0].show3_booked_seats;
               }
             }
+          }
           }
           else{
             this.letSeatResult =[];
