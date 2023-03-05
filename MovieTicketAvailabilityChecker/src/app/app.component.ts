@@ -2,7 +2,6 @@ import { Component,ElementRef } from '@angular/core';
 import {theatreApiService} from "./services/theatreapi.service";
 import { Posts, BooKSeats } from './classes/postparm';
 import { DatePipe } from '@angular/common';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-root',
@@ -118,7 +117,6 @@ getSelectSeat(event: any)
         this.txtTheatre_name = theatreInfo[2];
         let latest_date = this.datepipe.transform(this.todayDate, 'dd/MM/yyyy')
         this.txtCurrentDate = latest_date?.toString()??"";
-        //console.log(this.letMovie);
         let result: Array<any> = this.letMovie.filter(
           (element, index, array) => {
               if (theatreInfo[1].toString() === element.movie_name.toString()) {
@@ -130,34 +128,34 @@ getSelectSeat(event: any)
               }
           }
         );
-
         const letTheatreResut = this.letTheatre.filter((theatre, index) => {
-          //console.log(theatre.theatre_name);
             return (theatre.show1_movie == this.txtMovie_name || theatre.show2_movie == this.txtMovie_name || theatre.show3_movie == this.txtMovie_name || theatre.show4_movie == this.txtMovie_name) && theatre.theatre_name == this.txtTheatre_name && (theatre.show1_time == this.txtShow_time ||theatre.show2_time == this.txtShow_time || theatre.show3_time == this.txtShow_time||theatre.show4_time == this.txtShow_time ) ;
        });
-       //console.log(letTheatreResut);
        this.letSeatResult =[];
+       let number;
        for (let TheatreResut of letTheatreResut) {
-        //console.log(TheatreResut.booked_seats);
+        console.log(TheatreResut.booked_seats);
         let txt = TheatreResut.booked_seats
-        //console.log(this.txtShow_time);
+        console.log(this.txtShow_time);
           if(TheatreResut.booked_seats !== undefined)
           {
-            if(TheatreResut.booked_seats[0].date === this.txtCurrentDate)
+            number = TheatreResut.booked_seats.length -1;
+            
+            if(TheatreResut.booked_seats[number].date === this.txtCurrentDate)
             {
-              if(TheatreResut.booked_seats[0].show1_time === this.txtShow_time )
+              if(TheatreResut.booked_seats[number].show1_time === this.txtShow_time )
               {
-                this.letSeatResult=TheatreResut.booked_seats[0].show1_booked_seats;
+                this.letSeatResult=TheatreResut.booked_seats[number].show1_booked_seats;
                 //this.letSelectSeat = TheatreResut.booked_seats[0].show1_booked_seats.toString();
               }
-              if(TheatreResut.booked_seats[0].show2_time === this.txtShow_time )
+              if(TheatreResut.booked_seats[number].show2_time === this.txtShow_time )
               {
-                this.letSeatResult= TheatreResut.booked_seats[0].show2_booked_seats;
+                this.letSeatResult= TheatreResut.booked_seats[number].show2_booked_seats;
                 //this.letSelectSeat =TheatreResut.booked_seats[0].show2_booked_seats.toString();
               }
-              if(TheatreResut.booked_seats[0].show3_time === this.txtShow_time )
+              if(TheatreResut.booked_seats[number].show3_time === this.txtShow_time )
               {
-                this.letSeatResult=TheatreResut.booked_seats[0].show3_booked_seats;
+                this.letSeatResult=TheatreResut.booked_seats[number].show3_booked_seats;
                 //this.letSelectSeat =TheatreResut.booked_seats[0].show3_booked_seats;
               }
             }
