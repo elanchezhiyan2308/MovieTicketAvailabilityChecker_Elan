@@ -2,6 +2,7 @@ import { Component,ElementRef } from '@angular/core';
 import {theatreApiService} from "./services/theatreapi.service";
 import { Posts, BooKSeats } from './classes/postparm';
 import { DatePipe } from '@angular/common';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -16,9 +17,6 @@ letTheatre: Array<any> = [];
 letTheatreSeat: Array<any> = [100]; 
 letSelectSeat:Array<any> = [];
 letSeatResult:Array<any> = [];
-letRemoveSeat:Array<any> = [];
-letUniq:Array<any> =[];
-btnTheatreSeat:boolean = false;
 txtShow_time:string="";
 txtMovie_name:string="";
 txtTheatre_name:string="";
@@ -90,8 +88,6 @@ postBookSeat() {
       this.closePopup();
       this.ngOnInit();
 }
-
-
 
 getSelectSeat(event: any)
 {
@@ -182,7 +178,6 @@ getSelectSeat(event: any)
         
   ngOnInit()
   {
-      
       var opost = new Posts()
       opost.user_mail_id = "elanchezhiyan.m08@gmail.com"
       this._theatreApiService.post(opost)
