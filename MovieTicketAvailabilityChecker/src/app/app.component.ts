@@ -103,8 +103,14 @@ getSelectSeat(event: any)
       else{
           event.target.classList.remove('seatSelected');
       }
-
-      this.letSelectSeat.push(event.target.id);
+      if((this.letSelectSeat.find(x => x === event.target.id)) != event.target.id)
+      {
+        this.letSelectSeat.push(event.target.id);
+      }else{
+        this.letSelectSeat.splice(this.letSelectSeat.indexOf(event.target.id), 1);
+      }
+ 
+      //console.log(this.letSelectSeat);
       
  }
       divTheatreSeatFunction(value: string){
