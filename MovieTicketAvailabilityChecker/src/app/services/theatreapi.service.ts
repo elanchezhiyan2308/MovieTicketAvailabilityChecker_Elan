@@ -7,10 +7,6 @@ import { Posts, BooKSeats } from '../classes/postparm';
 export class theatreApiService{
     constructor(private httpClient: HttpClient){}
 
-// getTheatres(): Observable<any>{
-//  //let params1 = new HttpParams().set("user_mail_id","sample@gmail.com");
-//  return this.httpClient.post("https://zincubate.in/api/MovieTicketChecker?action=getAllDetails")//,{params:params1}
-// }
  post(opost:Posts): Observable<any>{
  return this.httpClient.post("https://zincubate.in/api/MovieTicketChecker?action=getAllDetails", opost);
  }
