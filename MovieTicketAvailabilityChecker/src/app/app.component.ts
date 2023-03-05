@@ -66,11 +66,9 @@ postBookSeat() {
       oBookSeat.show_time =this.txtShow_time;
       oBookSeat.movie_name =this.txtMovie_name;
       oBookSeat.theatre_name= this.txtTheatre_name;
-      alert("["+this.letSelectSeat+"]");
       oBookSeat.booked_seats = "["+this.letSelectSeat+"]";
       oBookSeat.date= this.txtCurrentDate;
       oBookSeat.user_mail_id = this.txtUser_mail_id;
-      alert(this.txtCurrentDate);
       if(this.letSelectSeat.toString() === "")
       {
         alert("Please select the seats")
@@ -97,7 +95,7 @@ postBookSeat() {
 
 getSelectSeat(event: any)
 {
-      alert(this.letSelectSeat);
+      //alert(this.letSelectSeat);
       if(event.target.className.indexOf('seatSelected') === -1)
       {
           event.target.classList.add('seatSelected');
@@ -107,14 +105,6 @@ getSelectSeat(event: any)
       }
 
       this.letSelectSeat.push(event.target.id);
-
-      
-            
-      //this.letSelectSeat.push(event.target.id)
-      //console.log(this.letSelectSeat);
-      //console.log(this.letUniq);
-      //console.log(this.letSelectSeat);
-      //console.log(this.letRemoveSeat);
       
  }
       divTheatreSeatFunction(value: string){
